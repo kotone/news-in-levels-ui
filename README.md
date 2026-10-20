@@ -10,19 +10,19 @@ Chrome Manifest V3 扩展，纯原生 JavaScript，**无需构建，解压即可
 
 统一的阅读排版，正文上方提供音频播放条，难词按词条分行展示。
 
-![News in Levels 桌面文章阅读界面](preview-desktop.png)
+![News in Levels 桌面文章阅读界面](docs/previews/article-with-images.png)
 
 ### 文章列表
 
 卡片展示文章图片、日期、摘要和等级入口，保留分类与分页导航。
 
-![News in Levels 桌面文章列表](preview-list-desktop.png)
+![News in Levels 桌面文章列表](docs/previews/list-with-images.png)
 
 ### Days in Levels
 
 历史文章沿用同一套界面，支持深色主题、原生音频和独立的历史分类。
 
-![Days in Levels 桌面文章阅读界面](preview-days-article.png)
+![Days in Levels 桌面文章阅读界面](docs/previews/days-with-images.png)
 
 > 预览使用真实文章图片与页面 HTML 样本生成，音频不自动播放。
 

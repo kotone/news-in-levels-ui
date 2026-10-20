@@ -16,9 +16,9 @@ const {chromium} = require(process.env.PLAYWRIGHT_PATH || 'playwright');
       return route.abort();
     });
     for (const [url,file,output,dark] of [
-      ['https://www.newsinlevels.com/','tests/home-sample.html','preview-list-desktop.png',false],
-      ['https://www.newsinlevels.com/products/hackers-attack-french-supermarkets-level-1/','source-sample.html','preview-desktop.png',false],
-      ['https://www.daysinlevels.com/article/first-man-climbed-all-mountains-over-8000-meters-level-1/','tests/days-article-sample.html','preview-days-article.png',true]
+      ['https://www.newsinlevels.com/','tests/home-sample.html','docs/previews/list-with-images.png',false],
+      ['https://www.newsinlevels.com/products/hackers-attack-french-supermarkets-level-1/','source-sample.html','docs/previews/article-with-images.png',false],
+      ['https://www.daysinlevels.com/article/first-man-climbed-all-mountains-over-8000-meters-level-1/','tests/days-article-sample.html','docs/previews/days-with-images.png',true]
     ]) {
       await page.goto(url);
       const html = fs.readFileSync(path.join(__dirname,'..',file),'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'');
@@ -32,7 +32,9 @@ const {chromium} = require(process.env.PLAYWRIGHT_PATH || 'playwright');
       await page.waitForFunction(() => [...document.querySelectorAll('#nil-reader-host img')].every(img => img.complete),{},{timeout:30000});
       const broken = await images.evaluateAll(imgs => imgs.filter(img => !img.naturalWidth).map(img => img.currentSrc || img.src));
       if (broken.length) throw new Error(`Preview images failed to load: ${broken.join(', ')}`);
-      await page.screenshot({path:path.join(__dirname,'..',output),fullPage:true});
+      const outputPath = path.join(__dirname,'..',output);
+      fs.mkdirSync(path.dirname(outputPath),{recursive:true});
+      await page.screenshot({path:outputPath,fullPage:true});
       console.log(`Saved ${output}: ${await images.count()} loaded images`);
     }
   } finally {await browser.close();}
