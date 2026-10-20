@@ -104,10 +104,8 @@ const fixture = fs.readFileSync(path.join(__dirname,'../source-sample.html'),'ut
     await host.getByRole('button',{name:'返回专注阅读',exact:true}).click();
     assert.equal(await page.evaluate(() => document.documentElement.classList.contains('nil-reading')),true);
     await host.getByRole('button',{name:'切换明暗主题'}).click();
-    await page.screenshot({path:path.join(__dirname,'../preview-desktop.png'),fullPage:true});
     await page.setViewportSize({width:390,height:844});
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
-    await page.screenshot({path:path.join(__dirname,'../preview-mobile.png'),fullPage:true});
     await page.setContent('<main>Not an article</main>');
     await page.addScriptTag({path:path.join(__dirname,'../extension/bootstrap.js')});
     await page.addScriptTag({path:path.join(__dirname,'../extension/reader.js')});

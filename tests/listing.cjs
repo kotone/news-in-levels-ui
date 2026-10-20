@@ -45,10 +45,8 @@ const read = name => fs.readFileSync(path.join(__dirname,name),'utf8').replace(/
       await host.getByRole('button',{name:'文章分类 ▾'}).click();
       assert.equal(await host.locator('.category-nav a').count(),url.includes('daysinlevels') ? 7 : 8);
       if (url.includes('level-2')) assert.match(await host.locator('.category-nav a').first().getAttribute('href'),/level=level-2/);
-      if (url === '/') await page.screenshot({path:path.join(__dirname,'../preview-list-desktop.png'),fullPage:true});
       await page.setViewportSize({width:390,height:844});
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),true);
-      if (url === '/') await page.screenshot({path:path.join(__dirname,'../preview-list-mobile.png'),fullPage:true});
       await host.getByRole('button',{name:'查看原网页',exact:true}).click();
       assert.equal(await page.evaluate(() => document.documentElement.classList.contains('nil-reading')),false);
       await host.getByRole('button',{name:'返回专注阅读',exact:true}).click();
@@ -68,7 +66,6 @@ const read = name => fs.readFileSync(path.join(__dirname,name),'utf8').replace(/
     assert.equal(await days.locator('audio').evaluate(audio => getComputedStyle(audio).display),'block');
     assert.equal(await days.locator('audio').getAttribute('controls'),'');
     assert.equal(await days.locator('audio').getAttribute('autoplay'),null);
-    await page.screenshot({path:path.join(__dirname,'../preview-days-article.png'),fullPage:true});
     await days.locator('audio').evaluate(audio => audio.dispatchEvent(new Event('error')));
     await days.getByText('音频加载失败或链接已过期，请刷新后重试。').waitFor();
     await days.getByRole('button',{name:'刷新页面并重试'}).waitFor();
