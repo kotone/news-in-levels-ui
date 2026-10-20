@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "News in Levels · 专注阅读",
+  "version": "1.5.1",
+  "description": "为 News in Levels 和 Days in Levels 提供清爽的列表与阅读界面，保留等级、难词和音视频。",
+  "permissions": ["storage"],
+  "content_scripts": [{
+    "matches": ["https://w.soundcloud.com/player/*"],
+    "js": ["soundcloud-rate-main.js"],
+    "all_frames": true,
+    "world": "MAIN",
+    "run_at": "document_start"
+  }, {
+    "matches": ["https://w.soundcloud.com/player/*"],
+    "js": ["soundcloud-rate-bridge.js"],
+    "all_frames": true,
+    "run_at": "document_start"
+  }, {
+    "matches": ["https://www.newsinlevels.com/*", "https://newsinlevels.com/*", "https://www.daysinlevels.com/*", "https://daysinlevels.com/*"],
+    "js": ["bootstrap.js"],
+    "css": ["isolation.css"],
+    "run_at": "document_start"
+  }, {
+    "matches": ["https://www.newsinlevels.com/*", "https://newsinlevels.com/*", "https://www.daysinlevels.com/*", "https://daysinlevels.com/*"],
+    "js": ["soundcloud.js", "listing.js", "reader.js"],
+    "run_at": "document_end"
+  }]
+}

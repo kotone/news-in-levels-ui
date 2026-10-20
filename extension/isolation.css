@@ -1,0 +1,7 @@
+html.nil-reading { overflow: auto !important; background: #f5f3ee !important; }
+html.nil-reading body { display: block !important; margin: 0 !important; padding: 0 !important; width: auto !important; height: auto !important; min-width: 0 !important; overflow: visible !important; background: transparent !important; }
+html.nil-reading body > [data-nil-original] { display: none !important; }
+#nil-reader-host { display: block !important; position: relative !important; z-index: auto !important; }
+html.nil-loading { background: #f5f3ee !important; }
+html.nil-loading body { visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
+html.nil-dark.nil-loading, html.nil-dark.nil-reading { background: #17211f !important; }
